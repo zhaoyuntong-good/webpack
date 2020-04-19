@@ -1,39 +1,18 @@
-// build/webpack.dev.js
-const merge = require('webpack-merge')
-const webpackConfig = require('./webpack.config')
-const webpack = require('webpack')
-module.exports = merge(webpackConfig, {
-  mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.(css|scss|sass)$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('dart-sass')
-            }
-          }
-        ]
-      },
-    ]
+/**
+ * webpack开发环境配置
+ */
+const Webpack = require('webpack')
+const webpackConfig = require('./webpack.config.js')
+const WebpackMerge = require('webpack-merge')
+module.exports = WebpackMerge(webpackConfig,{
+  mode:'development',
+  devtool:'cheap-module-eval-source-map',
+  devServer:{
+    port:3000,
+    hot:true,
+    contentBase:'../dist'
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    }),
+  plugins:[
+    new Webpack.HotModuleReplacementPlugin()
   ]
 })

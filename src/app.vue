@@ -1,23 +1,22 @@
-
 <template>
-  <div class="App">
-    <router-view></router-view>
+  <div id="container">
+    <h1>{{initData}}</h1>
   </div>
-  
 </template>
 
 <script>
-export default {
-  name: 'App',
-
-  data() {
-    return {};
+  export default {
+    data(){
+      return{
+        initData: '搭建成功'
+      }
+    }
   }
-};
 </script>
 
 <style scoped>
-.App {
-  color: skyblue;
-}
+  #container {
+    color: red;
+    display: flex;
+  }
 </style>
